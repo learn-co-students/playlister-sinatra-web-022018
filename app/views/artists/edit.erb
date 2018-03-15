@@ -1,0 +1,11 @@
+<h1>Edit</h1>
+<form action="/artists/<%= @artist.slug %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="artist[name]" value="<%= @artist.name %>">
+  <input type="submit" name="submit" value="Save">
+</form>
+<br>
+<form action="/artists/<%= @artist.slug %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" name="delete" value="Delete">
+</form>
