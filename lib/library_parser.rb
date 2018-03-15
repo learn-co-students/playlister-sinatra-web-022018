@@ -28,13 +28,20 @@ class LibraryParser
   end
 
   def build_objects(artist_name, song_name, genre_name)
+    # binding.pry
     song = Song.create(name: song_name)
+    song.slug = Slugifiable.slugify(song.name)
     genre = Genre.find_or_create_by(name: genre_name)
+    genre.slug = Slugifiable.slugify(genre.name)
     artist = Artist.find_or_create_by(name: artist_name)
-
-    song.song_genres.build(genre: genre)
+    artist.slug = Slugifiable.slugify(artist.name)
+    song.genres << genre
+    #
+    # song.song_genres.build(genre: genre)
     song.artist = artist
-    
+
     song.save
+    genre.save
+    artist.save
   end
 end
